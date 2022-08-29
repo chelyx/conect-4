@@ -1,0 +1,19 @@
+.container {
+  display:flex;
+  font-family: 'Staatliches', 'arial', sans-serif;
+  font-size: 30px;
+  align-items: center;
+  flex-direction: column;
+  div{
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width: 250px;
+    justify-content: center;
+    margin-bottom: 30px;
+  }
+}
+
+::ng-deep.mat-dialog-container {
+  padding: 0px !important;
+}

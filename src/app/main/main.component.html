@@ -1,15 +1,15 @@
-<div class="container" *ngIf="!winner" fxLayout="row" fxLayoutAlign="center center">
+<div class="container" fxLayout="row" fxLayoutAlign="center center">
   <div class="board" fxLayout="column"  fxLayoutAlign="center center">
     <p>Contador de partidas</p>
     <p>{{player1.name}}: {{player1.wins}} </p>
     <p>{{player2.name}}: {{player2.wins}} </p>
-    <p>Jugador actual: {{currentPlayer}} </p>
+    <p>Jugador actual: {{currentPlayer.name}} </p>
   </div>
   <div class="game" fxLayout="column" fxLayoutAlign="center center" >
     <mat-grid-list cols="7" rowHeight="70px" [gutterSize]="'20px'">
       <ng-container>
         <div *ngFor="let row of matrix">
-          <mat-grid-tile *ngFor="let item of row" (click)="chooseTile(item)"
+          <mat-grid-tile *ngFor="let item of row" (click)="chooseColumn(item.x)"
           [style.background]="item.value ? item.value.color : '#f5eef3'">
             </mat-grid-tile>
         </div>
@@ -17,8 +17,4 @@
     </mat-grid-list>
   </div>
 
-</div>
-<div *ngIf="winner" class="container">
-  <p>Ganador {{winner}}</p>
-  <button (click)="winner=''">Volver a jugar</button>
 </div>

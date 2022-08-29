@@ -7,11 +7,14 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
+import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainComponent
+    MainComponent,
+    WinnerDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +22,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
     NoopAnimationsModule,
     MatTableModule,
     MatGridListModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -8,3 +8,16 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Staatliches, "Helvetica Neue", sans-serif; }
+
+.btn-primary {
+  outline: none;
+  font-weight: bold;
+  border: none;
+  background: transparent;
+  margin: 2px 3px 2px 0;
+  cursor: pointer;
+  text-transform: uppercase;
+  &:hover{
+    background-color: #f5eef3;
+  }
+}

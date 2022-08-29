@@ -9,7 +9,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 export class WinnerDialogComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<WinnerDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {winner: string, color: string}) { }
+    @Inject(MAT_DIALOG_DATA) public data: {winner: string, color: string, tie: boolean}) { }
 
   ngOnInit(): void {
   }

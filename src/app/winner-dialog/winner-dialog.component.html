@@ -1,5 +1,6 @@
 <div class="container" >
-  <div [ngStyle]="{'background-color': data.color}">VICTORIA</div>
-  <p>Ganador {{data.winner}}</p>
+  <div *ngIf="!data.tie" [ngStyle]="{'background-color': data.color}">VICTORIA</div>
+  <div *ngIf="data.tie" [ngStyle]="{'background-color': '#b0aeae' }">EMPATE</div>
+  <p *ngIf="!data.tie">Ganador {{data.winner}}</p>
   <button class="btn-primary" mat-button mat-dialog-close cdkFocusInitial>Volver a jugar</button>
 </div>

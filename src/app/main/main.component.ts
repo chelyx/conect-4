@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   player2: Player;
   currentPlayer: Player;
   matrix: Tile[][] = [];
+  countTile = 0;
 
   constructor(public dialog: MatDialog) { }
 
@@ -40,7 +41,12 @@ export class MainComponent implements OnInit {
 
   chooseTile(x: number, y: number){
     this.matrix[y][x].value = this.currentPlayer;
-    this.connects4(x,y);
+    this.countTile++;
+    if(this.countTile === 42) {
+      this.openDialog(true);
+    } else {
+      this.connects4(x,y);
+    }
   }
 
   togglePlayer(){
@@ -59,17 +65,17 @@ export class MainComponent implements OnInit {
     console.log('match',wins);
 
     if(wins){
-      this.openDialog();
+      this.openDialog(false);
     } else {
       this.togglePlayer();
     }
   }
 
-  openDialog() {
+  openDialog(tie: boolean) {
     const dialogRef = this.dialog.open(WinnerDialogComponent, {
       width: '250',
       height: '200px',
-      data: {winner: this.currentPlayer.name, color: this.currentPlayer.color}
+      data: {winner: this.currentPlayer.name, color: this.currentPlayer.color, tie: tie}
     });
 
     dialogRef.afterClosed().subscribe(res => {
@@ -151,11 +157,14 @@ export class MainComponent implements OnInit {
     console.log(this.matrix);
   }
 
-  resetBoard(){
+  resetBoard($event?: any){
+    this.countTile = 0;
     this.generateEmptyMatrix();
-    this.currentPlayer.name === this.player1.name ? this.player1.wins++ : this.player2.wins++;
     this.currentPlayer = this.firstPlayer.name === this.player1.name ? this.player2 : this.player1;
     this.firstPlayer = this.currentPlayer;
+    if(!$event){
+      this.currentPlayer.name === this.player1.name ? this.player1.wins++ : this.player2.wins++;
+    }
   }
 
 }

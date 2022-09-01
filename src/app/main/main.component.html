@@ -1,10 +1,11 @@
 <div class="container" fxLayout="row" fxLayoutAlign="center center">
-  <div class="board" fxLayout="column"  fxLayoutAlign="center center">
+  <div class="board" fxLayout="column"  fxLayoutAlign="center center" *ngIf="playersLoaded">
     <p>Contador de partidas</p>
     <p>{{player1.name}}: {{player1.wins}} </p>
     <p>{{player2.name}}: {{player2.wins}} </p>
     <p>Jugador actual: {{currentPlayer.name}} </p>
     <button (click)="resetBoard($event)" class="btn-primary">Reiniciar partida</button>
+    <button (click)="ngOnInit()" class="btn-primary">Cambiar jugadores</button>
   </div>
   <div class="game" fxLayout="column" fxLayoutAlign="center center" >
     <mat-grid-list cols="7" rowHeight="70px" [gutterSize]="'20px'">

@@ -1,0 +1,26 @@
+<div class="container">
+  <p>Completa los datos y empeza a jugar!</p>
+  <form [formGroup]="form" >
+    <div fxLayout="row">
+      <label>Jugador 1:</label>
+      <input id="firstPlayer" type="text" formControlName="firstPlayer" [placeholder]="'Jugador 1'">
+      <div class="btn-group">
+        <span *ngFor="let item of colors1">
+          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"></button>
+        </span>
+      </div>
+    </div>
+
+    <div fxLayout="row">
+      <label>Jugador 2:</label>
+      <input id="secondPlayer" type="text" formControlName="secondPlayer" [placeholder]="'Jugador 2'">
+      <div class="btn-group">
+        <span *ngFor="let item of colors2">
+          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"></button>
+        </span>
+      </div>
+    </div>
+  </form>
+
+  <button (click)="onConfirm()" class="btn-primary" mat-button>confirmar</button>
+</div>

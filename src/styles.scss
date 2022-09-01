@@ -7,7 +7,10 @@
 
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Staatliches, "Helvetica Neue", sans-serif; }
+body, p, h1,h2,h3, label {
+  margin: 0;
+  font-family: Staatliches, "Helvetica Neue", sans-serif;
+}
 
 .btn-primary {
   outline: none;

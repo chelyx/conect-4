@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Player } from '../models/player.model';
+import { PlayersForm } from '../models/players-form.model';
 import { Tile } from '../models/tile.model';
+import { PlayersDialogComponent } from '../players-dialog/players-dialog.component';
 import { WinnerDialogComponent } from '../winner-dialog/winner-dialog.component';
 
 @Component({
@@ -16,15 +19,25 @@ export class MainComponent implements OnInit {
   currentPlayer: Player;
   matrix: Tile[][] = [];
   countTile = 0;
+  playersLoaded = false;
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.player1 = new Player('Rojo','#f5554a');
-    this.player2 = new Player('Amarillo','#ffe084');
-    this.currentPlayer = this.player1;
-    this.firstPlayer = this.player1;
+    this.initPlayers();
     this.generateEmptyMatrix();
+  }
+
+  initPlayers() {
+    const dialogRef = this.dialog.open(PlayersDialogComponent);
+    dialogRef.afterClosed().subscribe((res: PlayersForm)=> {
+      console.log(res);
+      this.player1 = new Player(res.firstPlayer,res.firstColor);
+      this.player2 = new Player(res.secondPlayer,res.secondColor);
+      this.currentPlayer = this.player1;
+      this.firstPlayer = this.player1;
+      this.playersLoaded = true;
+    });
   }
 
   chooseColumn(x: number){
@@ -154,7 +167,6 @@ export class MainComponent implements OnInit {
       }
       this.matrix.push(row);
     }
-    console.log(this.matrix);
   }
 
   resetBoard($event?: any){

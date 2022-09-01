@@ -9,12 +9,16 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { WinnerDialogComponent } from './winner-dialog/winner-dialog.component';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PlayersDialogComponent } from './players-dialog/players-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCardModule } from '@angular/material/card';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
-    WinnerDialogComponent
+    WinnerDialogComponent,
+    PlayersDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -22,9 +26,13 @@ import {MatDialogModule} from '@angular/material/dialog';
     NoopAnimationsModule,
     MatTableModule,
     MatGridListModule,
-    MatDialogModule
+    MatDialogModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatCardModule,
   ],
-  providers: [],
+  providers: [
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

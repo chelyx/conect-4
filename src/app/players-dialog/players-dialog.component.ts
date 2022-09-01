@@ -19,12 +19,12 @@ export class PlayersDialogComponent implements OnInit {
     '#b042f5',
     '#f542e0',
   ]
+  color1Selected = '#f54242';
+  color2Selected = '#b0f542';
 
   form = new FormGroup({
     firstPlayer: new FormControl('Jaime Lannister'),
-    firstColor: new FormControl('#f54242'),
-    secondPlayer: new FormControl('Daenerys Targaryen'),
-    secondColor: new FormControl('#b042f5')
+    secondPlayer: new FormControl('Daenerys Targaryen')
   });
   constructor(public dialogRef: MatDialogRef<PlayersDialogComponent>,) { }
 
@@ -33,18 +33,18 @@ export class PlayersDialogComponent implements OnInit {
 
   colorSelected(value: string) {
     if(this.colors1.includes(value)) {
-      this.form.controls.firstColor.setValue(value);
+      this.color1Selected = value;
     } else {
-      this.form.controls.secondColor.setValue(value);
+      this.color2Selected = value;
     }
   }
 
   onConfirm() {
     let form = new PlayersForm();
     form.firstPlayer = this.form.controls.firstPlayer.value!;
-    form.firstColor = this.form.controls.firstColor.value!;
+    form.firstColor = this.color1Selected;
     form.secondPlayer = this.form.controls.secondPlayer.value!;
-    form.secondColor = this.form.controls.secondColor.value!;
+    form.secondColor = this.color2Selected;
     this.dialogRef.close(form);
   }
 

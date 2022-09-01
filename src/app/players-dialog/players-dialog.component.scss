@@ -38,4 +38,7 @@
   box-shadow: none;
   border-radius: 12px;
   border-color: transparent;
+  &.selected {
+    border: 1px solid #000;
+  }
 }

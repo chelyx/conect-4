@@ -6,7 +6,8 @@
       <input id="firstPlayer" type="text" formControlName="firstPlayer" [placeholder]="'Jugador 1'">
       <div class="btn-group">
         <span *ngFor="let item of colors1">
-          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"></button>
+          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"
+          [class]="{'selected': color1Selected === item}"></button>
         </span>
       </div>
     </div>
@@ -16,7 +17,8 @@
       <input id="secondPlayer" type="text" formControlName="secondPlayer" [placeholder]="'Jugador 2'">
       <div class="btn-group">
         <span *ngFor="let item of colors2">
-          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"></button>
+          <button (click)="colorSelected(item)" class="btn-color" [style.background]="item"
+          [class]="{'selected': color2Selected === item}"></button>
         </span>
       </div>
     </div>

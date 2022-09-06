@@ -16,24 +16,24 @@ import { WinnerDialogComponent } from '../winner-dialog/winner-dialog.component'
     trigger('slideInOut', [
       transition('void => first', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('2000ms ease-in', style({ transform: 'translateY(450px)',
+        animate('500ms ease-in', style({ transform: 'translateY(450px)',
           backgroundColor: '{{back_color}}'}))
       ]),
       transition('first => second', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('2000ms ease-in', style({ transform: 'translateY(360px)' }))
+        animate('500ms ease-in', style({ transform: 'translateY(360px)' }))
       ]),
       transition('second => third', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('2000ms ease-in', style({ transform: 'translateY(270px)' }))
+        animate('500ms ease-in', style({ transform: 'translateY(270px)' }))
       ]),
       transition('third => four', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('2000ms ease-in', style({ transform: 'translateY(180px)' }))
+        animate('500ms ease-in', style({ transform: 'translateY(180px)' }))
       ]),
       transition('four => five', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('2000ms ease-in', style({ transform: 'translateY(90px)' }))
+        animate('500ms ease-in', style({ transform: 'translateY(90px)' }))
       ])
     ])
   ]
@@ -52,12 +52,7 @@ export class MainComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    // this.initPlayers();
-    this.player1 = new Player('juana', 'red');
-    this.player2 = new Player('maria', 'yellow');
-    this.currentPlayer = this.player1;
-    this.firstPlayer = this.player1;
-    this.playersLoaded = true;
+    this.initPlayers();
     this.generateEmptyMatrix();
   }
 
@@ -95,7 +90,7 @@ export class MainComponent implements OnInit {
     } else {
       this.connects4(x,y);
     }
-    }, 2000);
+    }, 500);
 
   }
 

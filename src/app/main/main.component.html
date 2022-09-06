@@ -7,7 +7,7 @@
     <button (click)="resetBoard($event)" class="btn-primary">Reiniciar partida</button>
     <button (click)="ngOnInit()" class="btn-primary">Cambiar jugadores</button>
   </div>
-  <div class="game" fxLayout="column" fxLayoutAlign="center center" >
+  <div *ngIf="playersLoaded" class="game" fxLayout="column" fxLayoutAlign="center center" >
     <span [@slideInOut]="{value: positions[0], params: {back_color: currentPlayer.color}}"
       class="tile-effect f0" (click)="chooseColumn(0)"></span>
     <span [@slideInOut]="{value: positions[1], params: {back_color: currentPlayer.color}}"

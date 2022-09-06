@@ -43,3 +43,41 @@
     padding: 0;
 }
 }
+
+.tile-effect {
+  background-color: #f5eef3;
+  width: 70px;
+  height: 70px;
+  z-index: 1;
+  border-radius: 60px;
+  position: absolute;
+  &.f0{
+    left: 598px;
+    top: 61px;
+  }
+  &.f1{
+    left: 701px;
+    top: 61px;
+  }
+  &.f2{
+    left: 804px;
+    top: 61px;
+  }
+  &.f3{
+    left: 907px;
+    top: 61px;
+  }
+  &.f4{
+    left: 1009px;
+    top: 61px;
+  }
+  &.f5{
+    left: 1112px;
+    top: 61px;
+  }
+  &.f6{
+    left: 1215px;
+    top: 61px;
+  }
+}
+

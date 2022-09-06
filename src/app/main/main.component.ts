@@ -1,3 +1,4 @@
+import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
@@ -10,7 +11,32 @@ import { WinnerDialogComponent } from '../winner-dialog/winner-dialog.component'
 @Component({
   selector: 'app-main',
   templateUrl: './main.component.html',
-  styleUrls: ['./main.component.scss']
+  styleUrls: ['./main.component.scss'],
+  animations: [
+    trigger('slideInOut', [
+      transition('void => first', [
+        style({backgroundColor: '{{back_color}}'}),
+        animate('2000ms ease-in', style({ transform: 'translateY(450px)',
+          backgroundColor: '{{back_color}}'}))
+      ]),
+      transition('first => second', [
+        style({backgroundColor: '{{back_color}}'}),
+        animate('2000ms ease-in', style({ transform: 'translateY(360px)' }))
+      ]),
+      transition('second => third', [
+        style({backgroundColor: '{{back_color}}'}),
+        animate('2000ms ease-in', style({ transform: 'translateY(270px)' }))
+      ]),
+      transition('third => four', [
+        style({backgroundColor: '{{back_color}}'}),
+        animate('2000ms ease-in', style({ transform: 'translateY(180px)' }))
+      ]),
+      transition('four => five', [
+        style({backgroundColor: '{{back_color}}'}),
+        animate('2000ms ease-in', style({ transform: 'translateY(90px)' }))
+      ])
+    ])
+  ]
 })
 export class MainComponent implements OnInit {
   firstPlayer: Player;
@@ -20,11 +46,18 @@ export class MainComponent implements OnInit {
   matrix: Tile[][] = [];
   countTile = 0;
   playersLoaded = false;
+  visible: Boolean = false;
+  positions = ['void','void','void','void','void','void','void'];
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.initPlayers();
+    // this.initPlayers();
+    this.player1 = new Player('juana', 'red');
+    this.player2 = new Player('maria', 'yellow');
+    this.currentPlayer = this.player1;
+    this.firstPlayer = this.player1;
+    this.playersLoaded = true;
     this.generateEmptyMatrix();
   }
 
@@ -53,13 +86,30 @@ export class MainComponent implements OnInit {
   }
 
   chooseTile(x: number, y: number){
-    this.matrix[y][x].value = this.currentPlayer;
+    this.positions[x] = this.togglePosition(this.positions[x]);
+    setTimeout(() => {
+      this.matrix[y][x].value = this.currentPlayer;
     this.countTile++;
     if(this.countTile === 42) {
       this.openDialog(true);
     } else {
       this.connects4(x,y);
     }
+    }, 2000);
+
+  }
+
+  togglePosition(posX: string) {
+    console.log(posX);
+    let ret = '';
+    switch(posX) {
+      case 'void': ret = 'first'; break;
+      case 'first': ret = 'second'; break;
+      case 'second': ret = 'third'; break;
+      case 'third': ret = 'four'; break;
+      case 'four': ret= 'five'; break;
+    }
+    return ret;
   }
 
   togglePlayer(){

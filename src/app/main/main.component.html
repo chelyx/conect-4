@@ -8,10 +8,24 @@
     <button (click)="ngOnInit()" class="btn-primary">Cambiar jugadores</button>
   </div>
   <div class="game" fxLayout="column" fxLayoutAlign="center center" >
+    <span [@slideInOut]="{value: positions[0], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f0" (click)="chooseColumn(0)"></span>
+    <span [@slideInOut]="{value: positions[1], params: {back_color: currentPlayer.color}}"
+    class="tile-effect f1" (click)="chooseColumn(1)"></span>
+    <span [@slideInOut]="{value: positions[2], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f2" (click)="chooseColumn(2)"></span>
+    <span [@slideInOut]="{value: positions[3], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f3" (click)="chooseColumn(3)"></span>
+    <span [@slideInOut]="{value: positions[4], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f4" (click)="chooseColumn(4)"></span>
+    <span [@slideInOut]="{value: positions[5], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f5" (click)="chooseColumn(5)"></span>
+    <span [@slideInOut]="{value: positions[6], params: {back_color: currentPlayer.color}}"
+      class="tile-effect f6" (click)="chooseColumn(6)"></span>
     <mat-grid-list cols="7" rowHeight="70px" [gutterSize]="'20px'">
       <ng-container>
         <div *ngFor="let row of matrix">
-          <mat-grid-tile *ngFor="let item of row" (click)="chooseColumn(item.x)"
+          <mat-grid-tile *ngFor="let item of row"
           [style.background]="item.value ? item.value.color : '#f5eef3'">
             </mat-grid-tile>
         </div>

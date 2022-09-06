@@ -4,6 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Player } from '../models/player.model';
 import { PlayersForm } from '../models/players-form.model';
+import { Position } from '../models/position.model';
 import { Tile } from '../models/tile.model';
 import { PlayersDialogComponent } from '../players-dialog/players-dialog.component';
 import { WinnerDialogComponent } from '../winner-dialog/winner-dialog.component';
@@ -16,24 +17,24 @@ import { WinnerDialogComponent } from '../winner-dialog/winner-dialog.component'
     trigger('slideInOut', [
       transition('void => first', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('500ms ease-in', style({ transform: 'translateY(450px)',
+        animate('200ms ease-in', style({ transform: 'translateY(450px)',
           backgroundColor: '{{back_color}}'}))
       ]),
       transition('first => second', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('500ms ease-in', style({ transform: 'translateY(360px)' }))
+        animate('200ms ease-in', style({ transform: 'translateY(360px)' }))
       ]),
       transition('second => third', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('500ms ease-in', style({ transform: 'translateY(270px)' }))
+        animate('200ms ease-in', style({ transform: 'translateY(270px)' }))
       ]),
       transition('third => four', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('500ms ease-in', style({ transform: 'translateY(180px)' }))
+        animate('200ms ease-in', style({ transform: 'translateY(180px)' }))
       ]),
       transition('four => five', [
         style({backgroundColor: '{{back_color}}'}),
-        animate('500ms ease-in', style({ transform: 'translateY(90px)' }))
+        animate('200ms ease-in', style({ transform: 'translateY(90px)' }))
       ])
     ])
   ]
@@ -47,12 +48,13 @@ export class MainComponent implements OnInit {
   countTile = 0;
   playersLoaded = false;
   visible: Boolean = false;
-  positions = ['void','void','void','void','void','void','void'];
+  positions: Position[] = [];//= ['void','void','void','void','void','void','void'];
 
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initPlayers();
+    this.initPositions();
     this.generateEmptyMatrix();
   }
 
@@ -68,6 +70,14 @@ export class MainComponent implements OnInit {
     });
   }
 
+  initPositions(){
+    this.positions = [];
+    for (let i = 0; i< 7; i++) {
+      let pos = new Position(i);
+      this.positions.push(pos);
+    }
+  }
+
   chooseColumn(x: number){
     let i = 5;
     let found = -1;
@@ -81,7 +91,7 @@ export class MainComponent implements OnInit {
   }
 
   chooseTile(x: number, y: number){
-    this.positions[x] = this.togglePosition(this.positions[x]);
+    this.positions[x].value = this.togglePosition(this.positions[x].value);
     setTimeout(() => {
       this.matrix[y][x].value = this.currentPlayer;
     this.countTile++;
@@ -90,7 +100,7 @@ export class MainComponent implements OnInit {
     } else {
       this.connects4(x,y);
     }
-    }, 500);
+    }, 200);
 
   }
 
@@ -217,6 +227,7 @@ export class MainComponent implements OnInit {
   resetBoard($event?: any){
     this.countTile = 0;
     this.generateEmptyMatrix();
+    this.initPositions();
     this.currentPlayer = this.firstPlayer.name === this.player1.name ? this.player2 : this.player1;
     this.firstPlayer = this.currentPlayer;
     if(!$event){

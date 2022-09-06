@@ -8,20 +8,10 @@
     <button (click)="ngOnInit()" class="btn-primary">Cambiar jugadores</button>
   </div>
   <div *ngIf="playersLoaded" class="game" fxLayout="column" fxLayoutAlign="center center" >
-    <span [@slideInOut]="{value: positions[0], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f0" (click)="chooseColumn(0)"></span>
-    <span [@slideInOut]="{value: positions[1], params: {back_color: currentPlayer.color}}"
-    class="tile-effect f1" (click)="chooseColumn(1)"></span>
-    <span [@slideInOut]="{value: positions[2], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f2" (click)="chooseColumn(2)"></span>
-    <span [@slideInOut]="{value: positions[3], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f3" (click)="chooseColumn(3)"></span>
-    <span [@slideInOut]="{value: positions[4], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f4" (click)="chooseColumn(4)"></span>
-    <span [@slideInOut]="{value: positions[5], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f5" (click)="chooseColumn(5)"></span>
-    <span [@slideInOut]="{value: positions[6], params: {back_color: currentPlayer.color}}"
-      class="tile-effect f6" (click)="chooseColumn(6)"></span>
+    <div *ngFor="let pos of positions">
+      <span [@slideInOut]="{value: pos.value, params: {back_color: currentPlayer.color}}"
+      class="tile-effect" (click)="chooseColumn(pos.index)" [class]="pos.class" ></span>
+    </div>
     <mat-grid-list cols="7" rowHeight="70px" [gutterSize]="'20px'">
       <ng-container>
         <div *ngFor="let row of matrix">

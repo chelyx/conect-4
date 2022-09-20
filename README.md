@@ -13,4 +13,4 @@ Primer reto de programacion 2022
 
 <a href="https://www.buymeacoffee.com/aradev" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
-<a class="badge-base__link LI-simple-link" href="https://ar.linkedin.com/in/araceli-soffulto-52ab0415b?trk=profile-badge">Araceli Soffulto</a>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/araceli-soffulto-52ab0415b/)
